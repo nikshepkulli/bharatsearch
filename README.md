@@ -100,5 +100,3 @@ deactivate
 ---
 
 🚩 *Built with 🇮🇳 pride. Let's reclaim the web.*
-
-```
