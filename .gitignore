@@ -24,3 +24,5 @@ Thumbs.db
 
 # Environment variable files
 .env
+
+node_modules/
