@@ -1,3 +1,4 @@
 flask
 sentence-transformers
 faiss-cpu
+flask-cors
