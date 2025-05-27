@@ -53,7 +53,7 @@ function App() {
       {hasSearched && results.length === 0 && !error && (
         <div className="text-center py-8 border rounded bg-gray-50">
           <p className="text-gray-600 text-lg">No documents matched your query.</p>
-          <p className="text-gray-500 text-sm mt-2">Try different keywords or check your spelling.</p>
+          <p className="text-gray-500 text-sm mt-2">Please try different KeyWords or check your spelling.</p>
         </div>
       )}
 
