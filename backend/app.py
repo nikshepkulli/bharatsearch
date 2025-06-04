@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from sentence_transformers import SentenceTransformer
 import faiss
+import numpy as np  # Added for normalization
 import json
 
 app = Flask(__name__)
@@ -31,16 +32,26 @@ def search():
         return jsonify({"error": "Missing 'q' parameter"}), 400
 
     embedding = model.encode([query])
+    embedding = np.array(embedding)
+    embedding = embedding / np.linalg.norm(embedding, axis=1, keepdims=True)
     D, I = index.search(embedding, k=5)
 
     results = []
-    for i in I[0]:
+    for idx, i in enumerate(I[0]):
+        score = float(D[0][idx])
         results.append({
             "filename": docs[i]["filename"],
-            "content": docs[i]["content"][:300] + "..."  # Trimmed preview
+            "content": docs[i]["content"][:300] + "...",  # Trimmed preview
+            "score": score
         })
 
+    # Sort by cosine score descending (optional, for clarity)
+    results = sorted(results, key=lambda x: x["score"], reverse=True)
     return jsonify(results)
+
+@app.route('/')
+def home():
+    return '<h2>BharatSearch API is running. Use <code>/search?q=your+query</code> to search.</h2>'
 
 if __name__ == "__main__":
     # Bind to all interfaces so it works with frontend on a different port
