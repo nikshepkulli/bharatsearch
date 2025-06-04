@@ -11,7 +11,8 @@ if not os.path.exists(DOCS_PATH):
     print(f"❌ Folder '{DOCS_PATH}' not found.")
     sys.exit(1)
 
-model = SentenceTransformer('all-MiniLM-L6-v2')
+# Use a multilingual model for Indian languages
+model = SentenceTransformer('distiluse-base-multilingual-cased-v2')
 texts = []
 metadata = []
 

@@ -8,8 +8,8 @@ import json
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
 
-# Load model
-model = SentenceTransformer('all-MiniLM-L6-v2')
+# Load multilingual model for Indian languages
+model = SentenceTransformer('distiluse-base-multilingual-cased-v2')
 
 # Load FAISS index and document metadata
 try:
