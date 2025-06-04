@@ -1,5 +1,6 @@
 from sentence_transformers import SentenceTransformer
 import faiss
+import numpy as np  # Added for normalization
 import os
 import json
 import sys
@@ -26,7 +27,11 @@ if not texts:
     sys.exit(1)
 
 embeddings = model.encode(texts)
-index = faiss.IndexFlatL2(embeddings[0].shape[0])
+# Normalize embeddings for cosine similarity
+embeddings = np.array(embeddings)
+embeddings = embeddings / np.linalg.norm(embeddings, axis=1, keepdims=True)
+# Use IndexFlatIP for cosine similarity
+index = faiss.IndexFlatIP(embeddings.shape[1])
 index.add(embeddings)
 
 # Save to disk
