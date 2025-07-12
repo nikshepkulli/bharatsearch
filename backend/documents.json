@@ -1,19 +1,11 @@
 [
   {
-    "filename": "documents.txt",
-    "content": "India is the world's largest democracy with a rich and diverse history..."
-  },
-  {
     "filename": "example.txt",
     "content": "India is the seventh-largest country in the world and has a diverse culture.\n"
   },
   {
     "filename": "history.txt",
     "content": "India has a long and rich history dating back thousands of years, including the Indus Valley Civilization.\n"
-  },
-  {
-    "filename": "requirements.txt",
-    "content": "flask\nsentence-transformers\nfaiss-cpu\n"
   },
   {
     "filename": "space.txt",
